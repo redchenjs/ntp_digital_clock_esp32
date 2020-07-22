@@ -1,0 +1,106 @@
+menu "NTP Digital Clock"
+
+menu "WiFi Configuration"
+config WIFI_SSID
+    string "WiFi SSID"
+    default "myssid"
+    help
+        SSID (network name) for the device to connect to.
+
+config WIFI_PASSWORD
+    string "WiFi Password"
+    default "mypassword"
+    help
+        WiFi password (WPA or WPA2) for the device to use.
+
+config WIFI_HOSTNAME_PREFIX
+    string "WiFi Hostname Prefix"
+    default "NDC"
+    help
+        WiFi hostname prefix for the device to use.
+endmenu
+
+menu "NTP Configuration"
+config NTP_SERVER_URL
+    string "NTP Server URL"
+    default "pool.ntp.org"
+
+config NTP_TIMEZONE
+    string "NTP Timezone"
+    default "CST-8"
+endmenu
+
+menu "SEG Configuration"
+config SEG_DIG1_A_PIN
+    int "SEG DIG1_A Pin"
+    default 13
+
+config SEG_DIG2_A_PIN
+    int "SEG DIG2_A Pin"
+    default 12
+
+config SEG_DIG3_A_PIN
+    int "SEG DIG3_A Pin"
+    default 32
+
+config SEG_DIG4_A_PIN
+    int "SEG DIG4_A Pin"
+    default 25
+
+config SEG_COL_A_PIN
+    int "SEG COL_A Pin"
+    default 27
+
+config SEG_COL_K_PIN
+    int "SEG COL_K Pin"
+    default 23
+
+config SEG_APO_A_PIN
+    int "SEG APO_A Pin"
+    default 22
+
+config SEG_APO_K_PIN
+    int "SEG APO_K Pin"
+    default 21
+
+config SEG_A_K_PIN
+    int "SEG A_K Pin"
+    default 5
+
+config SEG_B_K_PIN
+    int "SEG B_K Pin"
+    default 9
+
+config SEG_C_K_PIN
+    int "SEG C_K Pin"
+    default 18
+
+config SEG_D_K_PIN
+    int "SEG D_K Pin"
+    default 14
+
+config SEG_E_K_PIN
+    int "SEG E_K Pin"
+    default 33
+
+config SEG_F_K_PIN
+    int "SEG F_K Pin"
+    default 19
+
+config SEG_G_K_PIN
+    int "SEG G_K Pin"
+    default 10
+
+config SEG_DP_K_PIN
+    int "SEG DP_K Pin"
+    default 26
+endmenu
+
+config LED_ACTIVE_HIGH
+    bool
+
+config LED_PIN
+    int
+    default SEG_COL_A_PIN
+
+endmenu
