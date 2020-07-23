@@ -43,7 +43,7 @@ void seg_set_idle(bool val)
     gpio_set_level(CONFIG_SEG_DIG4_A_PIN, 0);
 
     gpio_set_level(CONFIG_SEG_COL_K_PIN, 1);
-    gpio_set_level(CONFIG_SEG_APO_K_PIN, 1);
+    gpio_set_level(CONFIG_SEG_DEG_K_PIN, 1);
 
     if (val) {
         gpio_set_drive_capability(CONFIG_SEG_DIG1_A_PIN, GPIO_DRIVE_CAP_DEFAULT);
@@ -52,7 +52,7 @@ void seg_set_idle(bool val)
         gpio_set_drive_capability(CONFIG_SEG_DIG4_A_PIN, GPIO_DRIVE_CAP_DEFAULT);
 
         gpio_set_drive_capability(CONFIG_SEG_COL_K_PIN, GPIO_DRIVE_CAP_DEFAULT);
-        gpio_set_drive_capability(CONFIG_SEG_APO_K_PIN, GPIO_DRIVE_CAP_DEFAULT);
+        gpio_set_drive_capability(CONFIG_SEG_DEG_K_PIN, GPIO_DRIVE_CAP_DEFAULT);
 
         gpio_set_drive_capability(CONFIG_SEG_A_K_PIN,  GPIO_DRIVE_CAP_DEFAULT);
         gpio_set_drive_capability(CONFIG_SEG_B_K_PIN,  GPIO_DRIVE_CAP_DEFAULT);
@@ -69,7 +69,7 @@ void seg_set_idle(bool val)
         gpio_set_drive_capability(CONFIG_SEG_DIG4_A_PIN, GPIO_DRIVE_CAP_3);
 
         gpio_set_drive_capability(CONFIG_SEG_COL_K_PIN, GPIO_DRIVE_CAP_0);
-        gpio_set_drive_capability(CONFIG_SEG_APO_K_PIN, GPIO_DRIVE_CAP_0);
+        gpio_set_drive_capability(CONFIG_SEG_DEG_K_PIN, GPIO_DRIVE_CAP_0);
 
         gpio_set_drive_capability(CONFIG_SEG_A_K_PIN,  GPIO_DRIVE_CAP_3);
         gpio_set_drive_capability(CONFIG_SEG_B_K_PIN,  GPIO_DRIVE_CAP_3);
@@ -91,7 +91,7 @@ void seg_set_idle(bool val)
     gpio_set_level(CONFIG_SEG_DP_K_PIN, 1);
 
     gpio_set_level(CONFIG_SEG_COL_K_PIN, 0);
-    gpio_set_level(CONFIG_SEG_APO_K_PIN, 1);
+    gpio_set_level(CONFIG_SEG_DEG_K_PIN, 1);
 
     gpio_set_level(CONFIG_SEG_DIG1_A_PIN, 1);
     gpio_set_level(CONFIG_SEG_DIG2_A_PIN, 1);
@@ -104,7 +104,7 @@ void seg_init(void)
     gpio_config_t io_conf = {
         .pin_bit_mask = BIT64(CONFIG_SEG_DIG1_A_PIN) | BIT64(CONFIG_SEG_DIG2_A_PIN) |
                         BIT64(CONFIG_SEG_DIG3_A_PIN) | BIT64(CONFIG_SEG_DIG4_A_PIN) |
-                        BIT64(CONFIG_SEG_COL_K_PIN)  | BIT64(CONFIG_SEG_APO_K_PIN)  |
+                        BIT64(CONFIG_SEG_COL_K_PIN)  | BIT64(CONFIG_SEG_DEG_K_PIN)  |
                         BIT64(CONFIG_SEG_A_K_PIN)    | BIT64(CONFIG_SEG_B_K_PIN)    |
                         BIT64(CONFIG_SEG_C_K_PIN)    | BIT64(CONFIG_SEG_D_K_PIN)    |
                         BIT64(CONFIG_SEG_E_K_PIN)    | BIT64(CONFIG_SEG_F_K_PIN)    |

@@ -55,12 +55,12 @@ config SEG_COL_K_PIN
     int "SEG COL_K Pin"
     default 23
 
-config SEG_APO_A_PIN
-    int "SEG APO_A Pin"
+config SEG_DEG_A_PIN
+    int "SEG DEG_A Pin"
     default 22
 
-config SEG_APO_K_PIN
-    int "SEG APO_K Pin"
+config SEG_DEG_K_PIN
+    int "SEG DEG_K Pin"
     default 21
 
 config SEG_A_K_PIN
