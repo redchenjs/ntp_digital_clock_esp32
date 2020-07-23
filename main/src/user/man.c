@@ -6,13 +6,11 @@
  */
 
 #include <time.h>
-#include <string.h>
 
 #include "esp_log.h"
 
 #include "core/os.h"
 #include "board/seg.h"
-#include "user/man.h"
 
 #define TAG "man"
 
