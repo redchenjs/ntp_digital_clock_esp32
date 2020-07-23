@@ -19,8 +19,28 @@
 static time_t now = 0;
 static struct tm timeinfo = {0};
 
+static bool col_val = false;
+
+static void tim_task(void *pvParameter)
+{
+    portTickType xLastWakeTime;
+
+    while (1) {
+        xLastWakeTime = xTaskGetTickCount();
+
+        time(&now);
+        localtime_r(&now, &timeinfo);
+
+        seg_set_col(col_val = !col_val);
+
+        vTaskDelayUntil(&xLastWakeTime, 500 / portTICK_RATE_MS);
+    }
+}
+
 static void seg_task(void *pvParameter)
 {
+    vTaskDelay(500 / portTICK_RATE_MS);
+
     seg_set_idle(false);
 
     while (1) {
@@ -40,7 +60,14 @@ static void seg_task(void *pvParameter)
 
 static void man_task(void *pvParameter)
 {
-    portTickType xLastWakeTime;
+    xEventGroupWaitBits(
+        user_event_group,
+        NTP_RUN_BIT,
+        pdFALSE,
+        pdFALSE,
+        portMAX_DELAY
+    );
+    xTaskCreatePinnedToCore(tim_task, "timT", 1280, NULL, 5, NULL, 0);
 
     xEventGroupWaitBits(
         user_event_group,
@@ -49,19 +76,11 @@ static void man_task(void *pvParameter)
         pdFALSE,
         portMAX_DELAY
     );
+    xTaskCreatePinnedToCore(seg_task, "segT", 1280, NULL, 5, NULL, 1);
 
     ESP_LOGI(TAG, "started.");
 
-    xTaskCreatePinnedToCore(seg_task, "segT", 1280, NULL, 5, NULL, 1);
-
-    while (1) {
-        xLastWakeTime = xTaskGetTickCount();
-
-        time(&now);
-        localtime_r(&now, &timeinfo);
-
-        vTaskDelayUntil(&xLastWakeTime, 1000 / portTICK_RATE_MS);
-    }
+    vTaskDelete(NULL);
 }
 
 void man_init(void)

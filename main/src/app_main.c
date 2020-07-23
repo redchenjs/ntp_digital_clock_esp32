@@ -14,7 +14,6 @@
 #include "board/seg.h"
 
 #include "user/ntp.h"
-#include "user/led.h"
 #include "user/man.h"
 
 static void core_init(void)
@@ -39,8 +38,6 @@ static void board_init(void)
 static void user_init(void)
 {
     ntp_init();
-
-    led_init();
 
     man_init();
 }

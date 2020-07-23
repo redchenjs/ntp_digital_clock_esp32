@@ -11,7 +11,6 @@
 #include "esp_sntp.h"
 
 #include "core/os.h"
-#include "user/led.h"
 
 #define TAG "ntp"
 
@@ -44,8 +43,6 @@ static void ntp_task(void *pvParameter)
         pdFALSE,
         portMAX_DELAY
     );
-
-    led_set_mode(2);
 
     sntp_setoperatingmode(SNTP_OPMODE_POLL);
     sntp_setservername(0, CONFIG_NTP_SERVER_URL);
