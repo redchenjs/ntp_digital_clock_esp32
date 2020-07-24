@@ -111,8 +111,8 @@ void seg_init(void)
 
     gpio_set_level(CONFIG_SEG_COL_A_PIN, 0);
     gpio_set_level(CONFIG_SEG_COL_K_PIN, 0);
-    gpio_set_drive_capability(CONFIG_SEG_COL_A_PIN, GPIO_DRIVE_CAP_0);
-    gpio_set_drive_capability(CONFIG_SEG_COL_K_PIN, GPIO_DRIVE_CAP_0);
+    gpio_set_drive_capability(CONFIG_SEG_COL_A_PIN, GPIO_DRIVE_CAP_1);
+    gpio_set_drive_capability(CONFIG_SEG_COL_K_PIN, GPIO_DRIVE_CAP_1);
 
     seg_set_idle(true);
 
