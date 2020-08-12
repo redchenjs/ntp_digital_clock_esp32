@@ -8,6 +8,7 @@
 #include <time.h>
 
 #include "esp_log.h"
+#include "esp_task.h"
 
 #include "core/os.h"
 #include "board/seg.h"
@@ -65,7 +66,7 @@ static void man_task(void *pvParameter)
         pdFALSE,
         portMAX_DELAY
     );
-    xTaskCreatePinnedToCore(tim_task, "timT", 1280, NULL, 5, NULL, 0);
+    xTaskCreatePinnedToCore(tim_task, "timT", 1280, NULL, ESP_TASK_TIMER_PRIO, NULL, 0);
 
     xEventGroupWaitBits(
         user_event_group,
@@ -74,7 +75,7 @@ static void man_task(void *pvParameter)
         pdFALSE,
         portMAX_DELAY
     );
-    xTaskCreatePinnedToCore(seg_task, "segT", 1280, NULL, 5, NULL, 1);
+    xTaskCreatePinnedToCore(seg_task, "segT", 1280, NULL, ESP_TASK_PRIO_MAX, NULL, 1);
 
     ESP_LOGI(TAG, "started.");
 
