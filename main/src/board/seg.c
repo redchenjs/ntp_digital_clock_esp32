@@ -52,32 +52,27 @@ void seg_set_num(uint8_t dig, uint8_t num)
     gpio_set_level(CONFIG_SEG_DIG4_A_PIN, dig == 4);
 }
 
-void seg_set_idle(bool val)
+void seg_set_idle(void)
 {
+    gpio_set_level(CONFIG_SEG_COL_A_PIN, 0);
+    gpio_set_level(CONFIG_SEG_COL_K_PIN, 0);
+
     gpio_set_level(CONFIG_SEG_DIG1_A_PIN, 0);
     gpio_set_level(CONFIG_SEG_DIG2_A_PIN, 0);
     gpio_set_level(CONFIG_SEG_DIG3_A_PIN, 0);
     gpio_set_level(CONFIG_SEG_DIG4_A_PIN, 0);
 
-    if (val) {
-        gpio_set_drive_capability(CONFIG_SEG_A_K_PIN,  GPIO_DRIVE_CAP_DEFAULT);
-        gpio_set_drive_capability(CONFIG_SEG_B_K_PIN,  GPIO_DRIVE_CAP_DEFAULT);
-        gpio_set_drive_capability(CONFIG_SEG_C_K_PIN,  GPIO_DRIVE_CAP_DEFAULT);
-        gpio_set_drive_capability(CONFIG_SEG_D_K_PIN,  GPIO_DRIVE_CAP_DEFAULT);
-        gpio_set_drive_capability(CONFIG_SEG_E_K_PIN,  GPIO_DRIVE_CAP_DEFAULT);
-        gpio_set_drive_capability(CONFIG_SEG_F_K_PIN,  GPIO_DRIVE_CAP_DEFAULT);
-        gpio_set_drive_capability(CONFIG_SEG_G_K_PIN,  GPIO_DRIVE_CAP_DEFAULT);
-        gpio_set_drive_capability(CONFIG_SEG_DP_K_PIN, GPIO_DRIVE_CAP_DEFAULT);
-    } else {
-        gpio_set_drive_capability(CONFIG_SEG_A_K_PIN,  GPIO_DRIVE_CAP_3);
-        gpio_set_drive_capability(CONFIG_SEG_B_K_PIN,  GPIO_DRIVE_CAP_3);
-        gpio_set_drive_capability(CONFIG_SEG_C_K_PIN,  GPIO_DRIVE_CAP_3);
-        gpio_set_drive_capability(CONFIG_SEG_D_K_PIN,  GPIO_DRIVE_CAP_3);
-        gpio_set_drive_capability(CONFIG_SEG_E_K_PIN,  GPIO_DRIVE_CAP_3);
-        gpio_set_drive_capability(CONFIG_SEG_F_K_PIN,  GPIO_DRIVE_CAP_3);
-        gpio_set_drive_capability(CONFIG_SEG_G_K_PIN,  GPIO_DRIVE_CAP_3);
-        gpio_set_drive_capability(CONFIG_SEG_DP_K_PIN, GPIO_DRIVE_CAP_3);
-    }
+    gpio_set_drive_capability(CONFIG_SEG_COL_A_PIN, GPIO_DRIVE_CAP_1);
+    gpio_set_drive_capability(CONFIG_SEG_COL_K_PIN, GPIO_DRIVE_CAP_1);
+
+    gpio_set_drive_capability(CONFIG_SEG_A_K_PIN,  GPIO_DRIVE_CAP_DEFAULT);
+    gpio_set_drive_capability(CONFIG_SEG_B_K_PIN,  GPIO_DRIVE_CAP_DEFAULT);
+    gpio_set_drive_capability(CONFIG_SEG_C_K_PIN,  GPIO_DRIVE_CAP_DEFAULT);
+    gpio_set_drive_capability(CONFIG_SEG_D_K_PIN,  GPIO_DRIVE_CAP_DEFAULT);
+    gpio_set_drive_capability(CONFIG_SEG_E_K_PIN,  GPIO_DRIVE_CAP_DEFAULT);
+    gpio_set_drive_capability(CONFIG_SEG_F_K_PIN,  GPIO_DRIVE_CAP_DEFAULT);
+    gpio_set_drive_capability(CONFIG_SEG_G_K_PIN,  GPIO_DRIVE_CAP_DEFAULT);
+    gpio_set_drive_capability(CONFIG_SEG_DP_K_PIN, GPIO_DRIVE_CAP_DEFAULT);
 
     gpio_set_level(CONFIG_SEG_A_K_PIN,  1);
     gpio_set_level(CONFIG_SEG_B_K_PIN,  1);
@@ -111,12 +106,7 @@ void seg_init(void)
     };
     gpio_config(&io_conf);
 
-    gpio_set_level(CONFIG_SEG_COL_A_PIN, 0);
-    gpio_set_level(CONFIG_SEG_COL_K_PIN, 0);
-    gpio_set_drive_capability(CONFIG_SEG_COL_A_PIN, GPIO_DRIVE_CAP_1);
-    gpio_set_drive_capability(CONFIG_SEG_COL_K_PIN, GPIO_DRIVE_CAP_1);
-
-    seg_set_idle(true);
+    seg_set_idle();
 
     ESP_LOGI(TAG, "initialized.");
 }

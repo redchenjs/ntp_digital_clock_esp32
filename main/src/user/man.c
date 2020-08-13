@@ -40,8 +40,6 @@ static void seg_task(void *pvParameter)
 {
     vTaskDelay(500 / portTICK_RATE_MS);
 
-    seg_set_idle(false);
-
     while (1) {
         seg_set_num(1, timeinfo.tm_hour / 10);
         vTaskDelay(1 / portTICK_RATE_MS);

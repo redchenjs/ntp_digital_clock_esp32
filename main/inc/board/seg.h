@@ -12,7 +12,7 @@
 
 extern void seg_set_col(bool val);
 extern void seg_set_num(uint8_t dig, uint8_t num);
-extern void seg_set_idle(bool val);
+extern void seg_set_idle(void);
 
 extern void seg_init(void);
 
