@@ -12,18 +12,23 @@
 #include "freertos/event_groups.h"
 
 typedef enum wifi_event_group_bits {
-    WIFI_RDY_BIT = BIT0,
+    WIFI_RDY_BIT = BIT0
 } wifi_event_group_bits_t;
 
 typedef enum user_event_group_bits {
-    NTP_RUN_BIT = BIT0,
-    NTP_RDY_BIT = BIT1,
+    OS_PWR_DUMMY_BIT = 0x00,
+    OS_PWR_RESET_BIT = BIT0,
+    OS_PWR_SLEEP_BIT = BIT1,
 
-    MAN_RUN_BIT = BIT2,
+    NTP_SYNC_RUN_BIT = BIT2,
+    NTP_SYNC_SET_BIT = BIT3
 } user_event_group_bits_t;
 
 extern EventGroupHandle_t wifi_event_group;
 extern EventGroupHandle_t user_event_group;
+
+extern void os_pwr_reset_wait(EventBits_t bits);
+extern void os_pwr_sleep_wait(EventBits_t bits);
 
 extern void os_init(void);
 

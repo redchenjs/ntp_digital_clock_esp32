@@ -14,7 +14,7 @@
 #include "board/seg.h"
 
 #include "user/ntp.h"
-#include "user/man.h"
+#include "user/clock.h"
 
 static void core_init(void)
 {
@@ -39,7 +39,7 @@ static void user_init(void)
 {
     ntp_init();
 
-    man_init();
+    clock_init();
 }
 
 int app_main(void)

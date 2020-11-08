@@ -1,5 +1,5 @@
 /*
- * man.c
+ * clock.c
  *
  *  Created on: 2020-07-15 18:14
  *      Author: Jack Chen <redchenjs@live.com>
@@ -13,7 +13,7 @@
 #include "core/os.h"
 #include "board/seg.h"
 
-#define TAG "man"
+#define TAG "clock"
 
 static time_t now = 0;
 static struct tm timeinfo = {0};
@@ -55,11 +55,11 @@ static void seg_task(void *pvParameter)
     }
 }
 
-static void man_task(void *pvParameter)
+static void clock_task(void *pvParameter)
 {
     xEventGroupWaitBits(
         user_event_group,
-        NTP_RUN_BIT,
+        NTP_SYNC_RUN_BIT,
         pdFALSE,
         pdFALSE,
         portMAX_DELAY
@@ -68,7 +68,7 @@ static void man_task(void *pvParameter)
 
     xEventGroupWaitBits(
         user_event_group,
-        MAN_RUN_BIT,
+        NTP_SYNC_SET_BIT,
         pdFALSE,
         pdFALSE,
         portMAX_DELAY
@@ -80,7 +80,7 @@ static void man_task(void *pvParameter)
     vTaskDelete(NULL);
 }
 
-void man_init(void)
+void clock_init(void)
 {
-    xTaskCreatePinnedToCore(man_task, "manT", 1280, NULL, 5, NULL, 0);
+    xTaskCreatePinnedToCore(clock_task, "clockT", 1280, NULL, 5, NULL, 0);
 }
