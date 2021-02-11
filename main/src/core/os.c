@@ -27,8 +27,7 @@ EventGroupHandle_t user_event_group;
 static EventBits_t reset_wait_bits = OS_PWR_DUMMY_BIT;
 static EventBits_t sleep_wait_bits = OS_PWR_DUMMY_BIT;
 
-static void wifi_event_handler(void* arg, esp_event_base_t event_base,
-                               int32_t event_id, void* event_data)
+static void wifi_event_handler(void *arg, esp_event_base_t event_base, int32_t event_id, void *event_data)
 {
     switch (event_id) {
         case WIFI_EVENT_STA_START:
@@ -45,8 +44,7 @@ static void wifi_event_handler(void* arg, esp_event_base_t event_base,
     }
 }
 
-static void ip_event_handler(void* arg, esp_event_base_t event_base,
-                             int32_t event_id, void* event_data)
+static void ip_event_handler(void *arg, esp_event_base_t event_base, int32_t event_id, void *event_data)
 {
     switch (event_id) {
         case IP_EVENT_STA_GOT_IP:
