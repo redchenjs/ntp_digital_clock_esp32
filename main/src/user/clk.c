@@ -1,5 +1,5 @@
 /*
- * clock.c
+ * clk.c
  *
  *  Created on: 2020-07-15 18:14
  *      Author: Jack Chen <redchenjs@live.com>
@@ -13,7 +13,7 @@
 #include "core/os.h"
 #include "board/seg.h"
 
-#define TAG "clock"
+#define TAG "clk"
 
 static time_t now = 0;
 static struct tm timeinfo = {0};
@@ -55,7 +55,7 @@ static void seg_task(void *pvParameter)
     }
 }
 
-static void clock_task(void *pvParameter)
+static void clk_task(void *pvParameter)
 {
     xEventGroupWaitBits(
         user_event_group,
@@ -80,7 +80,7 @@ static void clock_task(void *pvParameter)
     vTaskDelete(NULL);
 }
 
-void clock_init(void)
+void clk_init(void)
 {
-    xTaskCreatePinnedToCore(clock_task, "clockT", 1280, NULL, 5, NULL, 0);
+    xTaskCreatePinnedToCore(clk_task, "clkT", 1280, NULL, 5, NULL, 0);
 }
