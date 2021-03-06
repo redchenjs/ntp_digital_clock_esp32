@@ -4,20 +4,14 @@ menu "WiFi Configuration"
 config WIFI_SSID
     string "WiFi SSID"
     default "myssid"
-    help
-        SSID (network name) for the device to connect to.
 
 config WIFI_PASSWORD
     string "WiFi Password"
     default "mypassword"
-    help
-        WiFi password (WPA or WPA2) for the device to use.
 
 config WIFI_HOSTNAME_PREFIX
     string "WiFi Hostname Prefix"
     default "NDC"
-    help
-        WiFi hostname prefix for the device to use.
 endmenu
 
 menu "NTP Configuration"
